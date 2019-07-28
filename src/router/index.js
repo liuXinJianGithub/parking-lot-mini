@@ -3,9 +3,13 @@ import Router from 'vue-router'
 import ListItems from '../components/ListItems.vue'
 import ParkingLotComponent from '../components/ParkingLotComponent.vue'
 
+import advice from '../components/advice'
+import login from '../components/login'
+
 Vue.use(Router)
 
 export default new Router({
+  mode: "history",
   routes: [
     {
       path: '/',
@@ -16,6 +20,17 @@ export default new Router({
       path: '/parkingLotComponent',
       name: 'ParkingLotComponent',
       component: ParkingLotComponent
+    },
+    {
+      path: '/advice',
+      name: 'advice',
+      component: advice
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login
     }
   ]
 })
+

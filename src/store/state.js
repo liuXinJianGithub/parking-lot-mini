@@ -8,5 +8,7 @@ export default {
   },{
     name: '停车场 C',
     remain: 20
-  }]
+  }],
+  showItems: [],
+  listItems:[]
 }
