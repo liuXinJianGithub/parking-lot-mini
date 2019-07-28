@@ -1,15 +1,28 @@
 <template>
-  <mt-button type="primary" @click.native="handleClick" style="width: 100%">Test</mt-button>
+  <div>
+
+    <!-- <login></login> -->
+    <!-- <advice></advice>
+    <mt-button size="large" type="primary" style="margin:30px 0px" @click="goLogin">前往登录</mt-button> -->
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-  import { Toast } from 'mint-ui'
-  export default {
-    methods: {
-      handleClick () {
-        Toast('提示信息')
-      }
+import login from './components/login'
+import advice from './components/advice'
+export default {
+  components: {
+    login,
+    advice
+  },
+  methods:{
+    goLogin(){
+      this.$router.push({ path: "/login" });
     }
   }
+};
 </script>
+<style scoped>
+</style>
 
