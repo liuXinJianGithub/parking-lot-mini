@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ListItems from '../components/ListItems.vue'
 import ParkingLotComponent from '../components/ParkingLotComponent.vue'
-
-import advice from '../components/advice'
-import login from '../components/login'
+import Advice from '../components/Advice.vue'
+import Login from '../components/Login.vue'
+import GrabOrder from '../components/GrabOrder.vue'
+import FinshOrder from '../components/FinshOrder.vue'
 
 Vue.use(Router)
 
@@ -12,24 +12,29 @@ export default new Router({
   mode: "history",
   routes: [
     {
-      path: '/',
-      name: 'parkingLotComponent',
-      component: ListItems
-    },
-    {
-      path: '/parkingLotComponent',
+      path: '/parkingLotComponent/:carId',
       name: 'ParkingLotComponent',
       component: ParkingLotComponent
     },
     {
-      path: '/advice',
-      name: 'advice',
-      component: advice
+      path: '/',
+      name: 'Advice',
+      component: Advice
     },
     {
       path: '/login',
       name: 'login',
-      component: login
+      component: Login
+    },
+    {
+      path: '/grabOrder',
+      name: 'GrabOrder',
+      component: GrabOrder
+    },
+    {
+      path: '/finshOrder',
+      name: 'FinshOrder',
+      component: FinshOrder
     }
   ]
 })

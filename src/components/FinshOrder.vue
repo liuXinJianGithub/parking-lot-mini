@@ -1,35 +1,35 @@
 <template>
    <div>
-     <Header :returnParkingLot="returnParkingLot"  />
-     <mt-tab-container v-model="selected" >
+     <mt-header title="抢单"   style="height: 60px; font-size: 18px;height: 60px;cursor: pointer;">
+       <div slot="left"  >
+         <mt-button icon="back" style="cursor: pointer;"  ></mt-button>
+       </div>
+     </mt-header>
+
+     <mt-tab-container-item id="grab-order">
 
 
+     </mt-tab-container-item>
 
+     <mt-tab-container-item id="car">
 
-       <mt-tab-container-item id="grab-order">
+     </mt-tab-container-item>
 
-           <mt-cell v-for="(item,index) in itemNum" :key="index"   @click.native.stop="chooseParkingLot(item)"   :class="{isChangeColor: item.remain<=0}" :title=" item.name+'  ('+item.remain+')'"  style="font-weight: bold; border-bottom: 1px solid #eaeaea; padding: 2px 8px;cursor: hand; "  />
-           <!--<mt-cell v-for="(item,index) in orders" :key="index"   @click.native.stop="chooseParkingLot(item)"   :class="{isChangeColor: item.remain<=0}" :title=" item.carNumber+'  ('+item.startTime+')'"  style="font-weight: bold; border-bottom: 1px solid #eaeaea; padding: 2px 8px;cursor: hand; "  />-->
+     <mt-tab-container-item id="history">
+     </mt-tab-container-item>
 
-       </mt-tab-container-item>
-
-       <mt-tab-container-item id="car">
-              <!--<TakeOrParkCar  :selected = "selected" />-->
-           <mt-cell title="选择停车场"  @click.native="returnParkingLot" style="font-weight: bold;"></mt-cell>
-           <mt-button type="primary" size="large" @click.native="finishOrder"   style="width: 80%;margin: 0 auto;margin-top: 120px;">完成订单</mt-button>
-
-       </mt-tab-container-item>
-
-       <mt-tab-container-item id="history">
-       </mt-tab-container-item>
-
-       <mt-tab-container-item id="person">
-       </mt-tab-container-item>
+     <mt-tab-container-item id="person">
+     </mt-tab-container-item>
 
      </mt-tab-container>
 
-     <div class="bottom-bar">
-       <mt-tabbar v-model="selected">
+
+
+
+
+
+     <div class="bottom-bar" v-model="selected">
+       <mt-tabbar  >
          <mt-tab-item id="grab-order">
            <img slot="icon" src="../assets/images/grab-order.png" v-if="selected!=='grab-order'">
            <img slot="icon" src="../assets/images/grab-order-blue.png" v-else>
@@ -65,7 +65,7 @@
      },
      data(){
        return {
-         selected: 'grab-order',
+         selected: 'car',
          isShowOrder: true
        }
      },
@@ -77,11 +77,8 @@
       ...mapState(['itemNum','orders'])
     },
     methods:{
-      chooseParkingLot(item){
-        if(item.remain <= 0){
-          return;
-        }
-        this.selected = 'car'
+      chooseCar(item){
+        this.$router.push({path: `/ParkingLotComponent/${item.id}` })
       },
       returnParkingLot(){
 //          this.$router.go(-1)

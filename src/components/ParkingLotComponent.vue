@@ -9,6 +9,7 @@
 <script>
   import ListItems from './ListItems.vue'
   export default {
+     props:['carId'],
      components:{
         ListItems
      }

@@ -1,5 +1,5 @@
 <template>
-  <mt-header title="停车地点" style="height: 60px; font-size: 18px;height: 60px;cursor: pointer;">
+  <mt-header title="停车地点"   style="height: 60px; font-size: 18px;height: 60px;cursor: pointer;">
     <div slot="left"  >
       <mt-button icon="back" style="cursor: pointer;" @click="handleClose"></mt-button>
     </div>
@@ -8,9 +8,11 @@
 
 <script>
   export default {
+    props:['returnParkingLot'],
     methods:{
       handleClose(){
-        this.$router.go(-1)
+//        this.$router.go(-1)
+        this.returnParkingLot
       }
     }
   }

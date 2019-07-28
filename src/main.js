@@ -1,24 +1,15 @@
+// import 'mint-ui/lib/style.css'
+import './assets/style.css'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
-
 import store from './store'
-import Mint from 'mint-ui';
-// import 'mint-ui/lib/style.css'
-import './asserts/style.css'
-
-
-import router from './router/index'
 import axios from 'axios'
-import store from './store/store'
-
-
-
-Vue.prototype.$axios = axios
-
+import Mint from 'mint-ui';
+import { Field } from 'mint-ui';
 Vue.use(Mint);
-
+Vue.component(Field.name, Field);
+Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 
 new Vue({
@@ -28,4 +19,11 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+
+
+
+
+
+
 
