@@ -23,7 +23,7 @@ pipeline {
             steps {
                 sh '''
                     lib_name=todo2.tar.gz
-                    www_path= /usr/share/nginx/mobileparkinglot
+                    www_path=/usr/share/nginx/mobileparkinglot
                     cd dist
                     tar -zcvf ${lib_name} *
                     mv ${lib_name} ${www_path}
