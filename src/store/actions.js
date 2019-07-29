@@ -30,16 +30,16 @@ export default {
     axios.post(`http://localhost:9090/login`,userLogin)
       .then((response) => {
         if(response.data.code === 100){
-            localStorage.setItem('token_key', JSON.stringify(response.data.extend.token))
-            var tokens = JSON.parse(localStorage.getItem('token_key') || '[]')
-            if(response.data.extend.token === tokens){
-               alert(response.data.extend.message)
-            }else{
-               alert("请不要重复登录")
-            }
-            var employeId = response.data.extend.employeId
-            commit("login", {'tokens':tokens,'employeId':employeId})
-            window.location.href = '/ListItems'
+          localStorage.setItem('token_key', JSON.stringify(response.data.extend.token))
+          var tokens = JSON.parse(localStorage.getItem('token_key') || '[]')
+          if(response.data.extend.token === tokens){
+            alert(response.data.extend.message)
+          }else{
+            alert("请不要重复登录")
+          }
+          var employeId = response.data.extend.employeId
+          commit("login", {'tokens':tokens,'employeId':employeId})
+          window.location.href = '/ListItems'
         }else{
           alert(response.data.extend.message)
           if(response.data.extend.message === 'has logged in '){
