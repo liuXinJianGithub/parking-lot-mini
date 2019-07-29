@@ -7,19 +7,6 @@
 
 <script>
   export default {
-    props:['selected'],
-    data(){
-      return {
-      }
-    },
-    methods:{
-        returnParkingLot(){
-//          this.$router.go(-1)
-//          this.$router.push('ParkingLotComponent')
-          this.selected = 'car'
-        },
-
-    }
   }
 </script>
 

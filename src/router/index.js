@@ -5,6 +5,7 @@ import Advice from '../components/Advice.vue'
 import Login from '../components/Login.vue'
 import GrabOrder from '../components/GrabOrder.vue'
 import FinshOrder from '../components/FinshOrder.vue'
+import ListItems from '../components/ListItems.vue'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
       path: '/finshOrder',
       name: 'FinshOrder',
       component: FinshOrder
+    },
+    {
+      path: '/ListItems',
+      name: 'ListItems',
+      component: ListItems
     }
   ]
 })

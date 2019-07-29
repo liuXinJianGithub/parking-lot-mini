@@ -16,10 +16,12 @@
           name: "",
           password: "",
           isSuccessLogIn: false,
-          sessionId: ''
+          sessionId: '',
+
         };
       },
       created(){
+        this.$store.dispatch('getHistoryOrderByEmployeeId');
       },
     computed: {
       ...mapState(['token'])
@@ -31,6 +33,8 @@
             password: this.password
           }
           this.$store.dispatch('login',user);
+
+
         }
       },
     watch: {

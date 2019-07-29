@@ -24,10 +24,6 @@
      </mt-tab-container>
 
 
-
-
-
-
      <div class="bottom-bar" v-model="selected">
        <mt-tabbar  >
          <mt-tab-item id="grab-order">
@@ -81,8 +77,6 @@
         this.$router.push({path: `/ParkingLotComponent/${item.id}` })
       },
       returnParkingLot(){
-//          this.$router.go(-1)
-//          this.$router.push('ParkingLotComponent')
         this.selected = 'grab-order'
       },
       finishOrder(){

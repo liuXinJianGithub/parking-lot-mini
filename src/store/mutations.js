@@ -5,7 +5,11 @@ export default {
   getAllParkingOrder(state, orders){
     state.orders = orders.orders
   },
+  getHistoryOrderByEmployeeId(state,historyOrders){
+    state.historyOrders = orders.historyOrders
+  },
   login(state, tokens){
     state.tokes = tokens.tokens
+    state.employeId = tokens.employeId
   }
 }
