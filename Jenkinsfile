@@ -1,5 +1,8 @@
 pipeline {
     agent none
+     triggers {
+        pollSCM 'H/1 * * * *'
+    }
 
     stages {
         stage('Build') {
@@ -12,7 +15,7 @@ pipeline {
                     node -v
                     npm -v
                     npm install
-                    npm run dev
+                    npm run build
                 '''
             }
         }
@@ -22,8 +25,8 @@ pipeline {
             }
             steps {
                 sh '''
-                    lib_name=todo.tar.gz
-                    www_path= /usr/share/nginx/mobileparkinglot;
+                    lib_name=todo2.tar.gz
+                    www_path=/usr/share/nginx/mobileparkinglot
                     cd dist
                     tar -zcvf ${lib_name} *
                     mv ${lib_name} ${www_path}
