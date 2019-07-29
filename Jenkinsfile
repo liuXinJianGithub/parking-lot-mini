@@ -26,7 +26,7 @@ pipeline {
                     www_path= /usr/share/nginx/mobileparkinglot;
                     cd dist
                     tar -zcvf ${lib_name} *
-                    cp -R ${lib_name} ${www_path}
+                    mv ${lib_name} ${www_path}
                     cd ${www_path}
                     tar -zxvf ${www_path}/${lib_name} -C ./
                 '''
