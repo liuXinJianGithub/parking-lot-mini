@@ -1,7 +1,7 @@
 import axios from 'axios'
 export default {
   getAllParkingLotInfo({commit}){
-    axios.get(`http://localhost:9090/parking-lots`)
+    axios.get(`http://39.98.242.177:8888/parking-lots`)
       .then((response) => {
         var itemNum = response.data;
         commit("getAllParkingLotInfo", {itemNum})
@@ -9,7 +9,7 @@ export default {
     });
   },
   getAllParkingOrder({commit}){
-    axios.get(`http://localhost:9090/grab-order`)
+    axios.get(`http://39.98.242.177:8888/grab-order`)
       .then((response) => {
         var orders = response.data;
         commit("getAllParkingOrder", {orders})
@@ -17,7 +17,7 @@ export default {
     });
   },
   login({commit }, userLogin) {
-    axios.post(`http://localhost:9090/login`,userLogin)
+    axios.post(`http://39.98.242.177:8888/login`,userLogin)
       .then((response) => {
         if(response.data.code === 100){
             localStorage.setItem('token_key', JSON.stringify(response.data.extend.token))
@@ -38,7 +38,7 @@ export default {
     });
   },
   finishOrderAndUpdateStatu({commit }, token){
-    axios.put(`http://localhost:9090/login?token=${token}`)
+    axios.put(`http://39.98.242.177:8888/login?token=${token}`)
       .then((response) => {
         window.location.href = '/finshOrder'
       }).catch((error) => {
