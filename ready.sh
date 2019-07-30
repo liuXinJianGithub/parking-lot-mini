@@ -1,2 +1,3 @@
-cd /usr/share/nginx/webparkinglot/
+path=/usr/share/nginx/appparkingboy/
+cd ${path}
 rm -rf todo2.tar.gz
