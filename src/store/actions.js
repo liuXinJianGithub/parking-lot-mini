@@ -1,7 +1,7 @@
 import axios from 'axios'
 export default {
   getAllParkingLotInfo({commit}){
-    axios.get(`http://localhost:9090/parking-lots`)
+    axios.get(`http://39.98.242.177:8888/parking-lots`)
       .then((response) => {
         var itemNum = response.data;
         commit("getAllParkingLotInfo", {itemNum})
@@ -10,7 +10,7 @@ export default {
   },
   getAllParkingOrder({commit}){
     var state = 'nobodydo'
-    axios.get('http://localhost:9090/grab-order?state='+state)
+    axios.get('http://39.98.242.177:8888/grab-order?state='+state)
       .then((response) => {
         var orders = response.data;
         commit("getAllParkingOrder", {orders})
@@ -18,7 +18,7 @@ export default {
     });
   },
   getHistoryOrderByEmployeeId({state,commit}){
-    axios.get('http://localhost:9090/login/order?employeeId='+JSON.parse(localStorage.getItem('token_key') || ' '))
+    axios.get('http://39.98.242.177:8888/login/order?employeeId='+JSON.parse(localStorage.getItem('token_key') || ' '))
       .then((response) => {
         state.historyOrders = response.data;
         var historyOrders = response.data;
@@ -53,7 +53,7 @@ export default {
   },
   finishOrderAndUpdateStatu({state,commit }, orderId){
     var stateMsg = 'alreadystopped'
-    axios.put(`http://localhost:9090/login/order/${orderId}?stateMsg=${stateMsg}`)
+    axios.put(`http://39.98.242.177:8888/login/order/${orderId}?stateMsg=${stateMsg}`)
       .then((response) => {
         state.orders = response.data
         // window.location.href = '/ListItems'
@@ -64,7 +64,7 @@ export default {
     // var token = JSON.parse(localStorage.getItem('token_key') || ' ')
     var stateMsg = "haveorder"
     var token = JSON.parse(localStorage.getItem('token_key') || ' ')
-    axios.put(`http://localhost:9090/login/order/${id}?stateMsg=${stateMsg}&token=${token}`)
+    axios.put(`http://39.98.242.177:8888/login/order/${id}?stateMsg=${stateMsg}&token=${token}`)
       .then((response) => {
         state.orders = response.data
         // window.location.href = '/finshOrder'
