@@ -27,7 +27,7 @@ export default {
     });
   },
   login({commit}, userLogin) {
-    axios.post(`http://localhost:9090/login`,userLogin)
+    axios.post(`http://39.98.242.177:8888/login`,userLogin)
       .then((response) => {
         if(response.data.code === 100){
           localStorage.setItem('token_key', JSON.stringify(response.data.extend.token))
