@@ -102,7 +102,7 @@
                        <mt-tab-item id="person">
                              <img slot="icon" src="../assets/images/person.png" v-if="selected!=='person'">
                              <img slot="icon" src="../assets/images/person-blue.png" v-else>
-                                       个人
+                                   个人
                        </mt-tab-item>
          </mt-tabbar>
 
@@ -168,7 +168,7 @@
         this.selected = 'grab-order'
       },
       chooseHistory(){
-        this.isShowDetailInfo=!this.isShowDetailInfo
+        this.isShowDetailInfo=true
 
       }
     }

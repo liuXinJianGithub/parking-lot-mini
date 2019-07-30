@@ -1,7 +1,7 @@
 import axios from 'axios'
 export default {
   getAllParkingLotInfo({commit}){
-    axios.get(`http://39.98.242.177:8888/parking-lots`)
+    axios.get(`http://localhost:9090/parking-lots`)
       .then((response) => {
         var itemNum = response.data;
         commit("getAllParkingLotInfo", {itemNum})
@@ -10,7 +10,7 @@ export default {
   },
   getAllParkingOrder({commit}){
     var state = 'nobodydo'
-    axios.get('http://39.98.242.177:8888/grab-order?state='+state)
+    axios.get('http://localhost:9090/grab-order?state='+state)
       .then((response) => {
         var orders = response.data;
         commit("getAllParkingOrder", {orders})
@@ -18,7 +18,7 @@ export default {
     });
   },
   getHistoryOrderByEmployeeId({state,commit}){
-    axios.get('http://39.98.242.177:8888/login/order?employeeId='+JSON.parse(localStorage.getItem('token_key') || ' '))
+    axios.get('http://localhost:9090/login/order?employeeId='+JSON.parse(localStorage.getItem('token_key') || ' '))
       .then((response) => {
         state.historyOrders = response.data;
         var historyOrders = response.data;
@@ -27,7 +27,7 @@ export default {
     });
   },
   login({commit}, userLogin) {
-    axios.post(`http://39.98.242.177:8888/login`,userLogin)
+    axios.post(`http://localhost:9090/login`,userLogin)
       .then((response) => {
         if(response.data.code === 100){
           localStorage.setItem('token_key', JSON.stringify(response.data.extend.token))
@@ -53,7 +53,7 @@ export default {
   },
   finishOrderAndUpdateStatu({state,commit }, orderId){
     var stateMsg = 'alreadystopped'
-    axios.put(`http://39.98.242.177:8888/Orders/${orderId}?stateMsg=${stateMsg}`)
+    axios.put(`http://localhost:9090/login/order/${orderId}?stateMsg=${stateMsg}`)
       .then((response) => {
         state.orders = response.data
         // window.location.href = '/ListItems'
@@ -63,7 +63,8 @@ export default {
   grabOderThenUpdateState({state,commit},id){
     // var token = JSON.parse(localStorage.getItem('token_key') || ' ')
     var stateMsg = "haveorder"
-    axios.put(`http://39.98.242.177:8888/Orders/${id}?stateMsg=${stateMsg}`)
+    var token = JSON.parse(localStorage.getItem('token_key') || ' ')
+    axios.put(`http://localhost:9090/login/order/${id}?stateMsg=${stateMsg}&token=${token}`)
       .then((response) => {
         state.orders = response.data
         // window.location.href = '/finshOrder'
