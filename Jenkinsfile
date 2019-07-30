@@ -48,7 +48,11 @@ pipeline {
             }
             steps {
                 sh '''
-                    echo 'exit done'
+                    chmod +x ready.sh
+                    chmod +x run.sh
+                    ssh -o StrictHostKeyChecking=no -i ~/.ssh/ooclserver_rsa root@39.98.93.236 < ready.sh
+                    scp -o StrictHostKeyChecking=no -i ~/.ssh/ooclserver_rsa /usr/share/nginx/mobileparkinglot/todo2.tar.gz root@39.98.93.236:/usr/share/nginx/appparkingboy/
+                    ssh -o StrictHostKeyChecking=no -i ~/.ssh/ooclserver_rsa root@39.98.93.236 < run.sh
                 '''
             }
         }
