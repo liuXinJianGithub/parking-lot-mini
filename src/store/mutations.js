@@ -11,5 +11,11 @@ export default {
   login(state, tokens){
     state.tokes = tokens.tokens
     state.employeId = tokens.employeId
+  },
+  getOrderByGetTheCar(state, getthecars){
+    state.getthecars = getthecars.getthecars
+  },
+  parkOrTakeCar(state,getthecars){
+    state.getthecars = getthecars.getthecars
   }
 }

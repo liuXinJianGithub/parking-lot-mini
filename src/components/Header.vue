@@ -11,8 +11,6 @@
     props:['midTitle'],
     methods:{
       handleClose(){
-//        this.$router.go(-1)
-        this.returnParkingLot
       }
     }
   }

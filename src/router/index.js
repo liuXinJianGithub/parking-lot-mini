@@ -18,12 +18,12 @@ export default new Router({
       component: ParkingLotComponent
     },
     {
-      path: '/',
+      path: '/Advice',
       name: 'Advice',
       component: Advice
     },
     {
-      path: '/login',
+      path: '/',
       name: 'login',
       component: Login
     },

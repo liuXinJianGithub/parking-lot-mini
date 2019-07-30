@@ -1,4 +1,3 @@
-// import 'mint-ui/lib/style.css'
 import './assets/style.css'
 import Vue from 'vue'
 import App from './App'
@@ -11,6 +10,12 @@ Vue.use(Mint);
 Vue.component(Field.name, Field);
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
+
+
+import { InfiniteScroll } from'mint-ui';
+
+Vue.use(InfiniteScroll);
+
 
 new Vue({
   el: '#app',

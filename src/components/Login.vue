@@ -16,8 +16,7 @@
           name: "",
           password: "",
           isSuccessLogIn: false,
-          sessionId: '',
-
+          sessionId: ''
         };
       },
       created(){
@@ -33,8 +32,6 @@
             password: this.password
           }
           this.$store.dispatch('login',user);
-
-
         }
       },
     watch: {
@@ -45,7 +42,6 @@
         }
       }
     }
-
   };
 </script>
 <style scoped>
