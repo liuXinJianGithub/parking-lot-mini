@@ -1,2 +1,2 @@
 cd /usr/share/nginx/appparkingboy/
-tar -zxvf /usr/share/nginx/appparkinglot/todo2.tar.gz
+tar -zxvf /usr/share/nginx/appparkingboy/todo2.tar.gz
