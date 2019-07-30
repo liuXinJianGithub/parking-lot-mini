@@ -1,2 +1,2 @@
 cd /usr/share/nginx/webparkinglot/
-rm -rf todo.tar.gz
+rm -rf todo2.tar.gz
