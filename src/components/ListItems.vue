@@ -195,6 +195,7 @@
       finishOrder(){
         this.selected = 'history'
         this.$store.dispatch("updateOrderStateForNobodydo", this.orderId)
+        this.$store.dispatch("getAllParkingLotInfo")
         this.$store.dispatch("finishOrderAndUpdateStatu", {orderId: this.orderId, parkingLotId: this.parkingLotId})
         this.isShowOrder = 'none'
       },
