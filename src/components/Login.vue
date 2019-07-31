@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="head" style="height: 290px ; width: 265px; border: none; ">
-      <img src="../assets/images/logo.png" style="width: 180px;height: 180px;background: white;  margin: 40px auto 7px 45px;">
+      <img src="../assets/images/logo.png" style="width: 180px;height: 180px;   margin: 40px auto 7px 45px;">
     </div>
     <mt-field style="margin-left: 10px;" label="用户名" placeholder=" Id / 电话号码 / Email" v-model="name"></mt-field>
     <mt-field style="margin-left: 10px;" label=" 密码" placeholder=" 请输入密码" type="password" v-model="password"></mt-field>
