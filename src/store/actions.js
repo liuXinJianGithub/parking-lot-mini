@@ -112,6 +112,13 @@ export default {
       }).catch((error) => {
     });
   },
-  getParkingLotNameAndEmployeeName({commit},item){
+  updateOrderStateForNobodydo({commit},orderId){
+    var stateMsg = "nobodydo"
+    var token = JSON.parse(localStorage.getItem('token_key') || ' ')
+    axios.put(`http://39.98.242.177:8888/login/order/${orderId}?stateMsg=${stateMsg}&token=${token}`)
+      .then((response) => {
+        state.orders = response.data
+      }).catch((error) => {
+    });
   }
 }

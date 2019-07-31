@@ -17,7 +17,7 @@
                  <mt-cell v-for="(item,index) in itemNum" :key="index"   @click.native.stop="chooseParkingLot(item)"   :class="{isChangeColor: item.remain<=0}" :title=" item.name+'  ('+item.remain+')'"  style="font-weight: bold; border-bottom: 1px solid #eaeaea; padding: 2px 8px;cursor: hand; "  />
              </div>
              <div v-if="isShowOrder==='clickHaveCar'">
-                 <Header  midTitle="停车地点"  @click.native ="grabOrder" />
+                 <Header  midTitle="停车地点" @click.native ="chooseParkingLotReturn"   />
                  <mt-cell title="选择停车场"  @click.native="returnParkingLot" style="font-weight: bold;"></mt-cell>
                  <mt-button type="primary" size="large" @click.native="finishOrder"   style="width: 80%;margin: 0 auto;margin-top: 120px;">已停车</mt-button>
              </div>
@@ -175,6 +175,7 @@
       },
       finishOrder(){
         this.selected = 'history'
+        this.$store.dispatch("updateOrderStateForNobodydo",this.orderId)
         this.$store.dispatch("finishOrderAndUpdateStatu",{ orderId:this.orderId,parkingLotId:this.parkingLotId })
         this.isShowOrder = 'none'
       },
@@ -186,23 +187,26 @@
         });
       },
       chooseCar(item){
+            this.orderId = item.id
+            this.selected = 'car'
+            this.isShowOrder = 'chooseParkingLot'
+//            this.$store.dispatch("grabOderThenUpdateState",item)
         Indicator.open({
           text: '加载中...',
           spinnerType: 'fading-circle'
         });
-         MessageBox.confirm('确定执行此操作?').then(action => {
-            this.orderId = item.id
-            this.selected = 'car'
-            this.isShowOrder = 'chooseParkingLot'
-            this.$store.dispatch("grabOderThenUpdateState",item)
-        }).catch(err => {
-         });
+//         MessageBox.confirm('确定执行此操作?').then(action => {
+//        }).catch(err => {
+//         });
         window.setTimeout(() => {
           Indicator.close();
-        }, 1000);
+        }, 120);
       },
       returnParkingLot(){
-        this.selected = 'grab-order'
+//        this.$store.dispatch("getAllParkingOrder")
+        this.selected = 'car'
+        this.isShowOrder = 'chooseParkingLot'
+//        this.selected = 'grab-order'
       },
       returnHistory(){
         this.selected = 'history'
@@ -211,6 +215,7 @@
         this.isShowOrder = 'none'
         this.isShowDetailInfo=true
         this.$store.dispatch("getHistoryOrderByEmployeeId")
+
       },
       grabOrderButton(){
         this.isShowOrder = 'none'
@@ -218,7 +223,6 @@
       },
       carButton  (){
         this.$store.dispatch("getOrderByGetTheCar")
-
       },
       personButton(){
         this.isShowOrder = 'none'
@@ -231,8 +235,10 @@
       },
       grabOrder(){
         this.selected = 'grab-order'
+        this.$store.dispatch("updateOrderStateForNobodydo",this.orderId)
       },
       loadMore(){
+        this.$store.dispatch("getOrderByGetTheCar")
         Indicator.open()
         window.setTimeout(() => {
           Indicator.close()
@@ -252,6 +258,12 @@
       },
       returnLogin(){
         this.$router.go(-1)
+      },
+      chooseParkingLotReturn(){
+        this.selected = 'car'
+        this.isShowOrder = 'chooseParkingLot'
+//        this.selected = 'grab-order'
+//        this.selected = 'clickHaveCar'
       }
     }
   }
