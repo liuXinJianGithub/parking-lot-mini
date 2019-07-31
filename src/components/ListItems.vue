@@ -4,7 +4,7 @@
       <mt-tab-container-item id="grab-order">
         <Header midTitle="抢单" @click.native="returnLogin"/>
         <mt-cell icon="more" is-link title="标题" v-for="(item,index) in orders" :key="index"
-                 @click.native.stop="chooseCar(item)" :class="{isChangeColor: item.remain<=0}"
+                 @click.native.stop="chooseCar(item,index)" :class="{isChangeColor: item.remain<=0}"
                  :title=" '   车牌号：' +  item.carNumber" :label="'  ('+item.startTime+')'"
                  style="font-weight: bold; border-bottom: 1px solid #eaeaea; padding: 2px 8px;cursor: hand;  padding: 10px;">
           <img slot="icon" src="../assets/images/grabcar.png" width="24" height="24" style="margin-left: 10px;">
@@ -153,6 +153,7 @@
         parkCar: false,
         currentIndex: 0,
         sheetVisible: false,
+        orderArray: [],
         id: 0,
         state: '',
         actions: [{
@@ -164,7 +165,11 @@
         }]
       }
     },
-    created(){
+    created() {
+      this.initWebSocket()
+    },
+    destroyed: function () {
+      this.websocketclose();
     },
     mounted(){
       this.$store.dispatch("getAllParkingLotInfo")
@@ -180,6 +185,14 @@
       employeId: {
         get(){
           return this.$store.state.employeId
+        }
+      },
+      orders:{
+        set(value){
+          this.orderArray = JSON.parse(value)
+        },
+        get(){
+          return this.orderArray
         }
       }
     },
@@ -205,11 +218,12 @@
           this.currentIndex = index
         }).catch(err => {});
       },
-      chooseCar(item){
+      chooseCar(item,index){
         this.orderId = item.id
         this.selected = 'car'
         this.isShowOrder = 'chooseParkingLot'
         this.$store.dispatch("getAllParkingLotInfo")
+        this.orders.splice(index,1)
         Indicator.open({
           text: '加载中...',
           spinnerType: 'fading-circle'
@@ -276,6 +290,22 @@
       chooseParkingLotReturn(){
         this.selected = 'car'
         this.isShowOrder = 'chooseParkingLot'
+      },
+      initWebSocket:function() {
+        this.websock = new WebSocket("ws://39.98.242.177:8888/parking-boys/websocket");
+        this.websock.onopen = this.websocketonopen;
+        this.websock.onerror = this.websocketonerror;
+        this.websock.onmessage = this.websocketonmessage;
+        this.websock.onclose = this.websocketclose;
+      },
+      websocketonopen:function() {
+      },
+      websocketonerror:function(e) {
+      },
+      websocketonmessage:function(e) {
+        this.orders = e.data
+      },
+      websocketclose :function(e) {
       }
     }
   }
@@ -286,19 +316,15 @@
     background: #eaeaea;
     cursor: no-drop;
   }
-
   body {
     cursor: pointer;
     background: #f7f6fb;
   }
-
   ul li {
     padding: 10px;
   }
-
   .icon-success {
   }
-
   .cardDiv {
     width: 83%;
     height: 230px;
@@ -306,18 +332,15 @@
     border-radius: 5px;
     margin: 15px auto;
   }
-
   .cardDiv p {
     margin: 14px;
   }
-
   .line {
     display: block;
     width: 100%;
     background-color: #f7f6fb;
     height: 3px;
   }
-
   .cardMeg {
     width: 90%;
     height: 100%;
@@ -325,7 +348,6 @@
     color: #8b898a;
     font-size: 16px;
   }
-
   .takeOrPack {
     background: #a9acb1;
     cursor: no-drop;
