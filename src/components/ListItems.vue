@@ -209,6 +209,7 @@
         this.orderId = item.id
         this.selected = 'car'
         this.isShowOrder = 'chooseParkingLot'
+        this.$store.dispatch("getAllParkingLotInfo")
         Indicator.open({
           text: '加载中...',
           spinnerType: 'fading-circle'
