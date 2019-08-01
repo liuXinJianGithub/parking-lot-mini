@@ -85,7 +85,7 @@
               <ul style="list-style: none;padding: 20px;">
                 <li>
                   <div style="font-size: 24px;text-align: left;margin-top: 15px;"> 车牌号: {{item.carNumber}}</div>
-                  <div style="font-size: 24px;text-align: right;margin-top: -28px;float: right"> Y50.00</div>
+                  <div style="font-size: 24px;text-align: right;margin-top: -28px;float: right">金额: {{item.orderMoney}}</div>
                 </li>
                 <li>订单ID：{{item.id}}</li>
                 <li>停车场：{{item.parkingLotId}}</li>
