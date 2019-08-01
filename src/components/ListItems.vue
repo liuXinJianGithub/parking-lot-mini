@@ -84,8 +84,8 @@
               style="width: 90% ; border: 1px solid red;    border-radius: 10px;border: white; margin: 0 auto;background: white;">
               <ul style="list-style: none;padding: 20px;">
                 <li>
-                  <div style="font-size: 24px;text-align: left;margin-top: 15px;"> 车牌号: {{item.carNumber}}</div>
-                  <div style="font-size: 24px;text-align: right;margin-top: -28px;float: right">金额: {{item.orderMoney}}</div>
+                  <div style="font-size: 18px;text-align: left;margin-top: 15px;"> 车牌号: {{item.carNumber}}</div>
+                  <div style="font-size: 18px;text-align: right;margin-top: -28px;float: right">金额: {{item.orderMoney}}</div>
                 </li>
                 <li>订单ID：{{item.id}}</li>
                 <li>停车场：{{item.parkingLotId}}</li>
